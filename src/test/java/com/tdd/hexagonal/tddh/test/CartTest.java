@@ -1,6 +1,6 @@
 package com.tdd.hexagonal.tddh.test;
 
-import com.tdd.hexagonal.tddh.Cart;
+import com.tdd.hexagonal.tddh.domain.Cart;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -24,5 +24,27 @@ public class CartTest {
 
         Assertions.assertThat(cart.totalPrice())
                 .isEqualTo(1);
+    }
+
+    @Test
+    void addTwoToothbreshesThenTotalPriceIsTwoDollars(){
+        Cart cart = new Cart();
+
+        cart.add("Toothbrush", 1);
+        cart.add("Toothpaste", 2);
+
+        Assertions.assertThat(cart.totalPrice())
+                .isEqualTo(3);
+    }
+
+    @Test
+    void emptyCartReceiptShowsZeroPrice(){
+        Cart cart = new Cart();
+
+        Assertions.assertThat(cart.receipt())
+                .isEqualTo("""
+                                Cart is empty
+                                Total price $0
+                                """);
     }
 }
