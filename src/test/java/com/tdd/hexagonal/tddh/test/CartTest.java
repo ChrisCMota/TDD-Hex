@@ -2,6 +2,7 @@ package com.tdd.hexagonal.tddh.test;
 
 import com.tdd.hexagonal.tddh.domain.Cart;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class CartTest {
@@ -17,7 +18,7 @@ public class CartTest {
     }
 
     @Test
-    void addToothbrushProductThenTotalPriceIsOneDollar(){
+    void addToothbrushProductThenTotalPriceIsOneDollar() {
         Cart cart = new Cart();
 
         cart.add("Toothbrush", 1);
@@ -27,7 +28,7 @@ public class CartTest {
     }
 
     @Test
-    void addTwoToothbreshesThenTotalPriceIsTwoDollars(){
+    void addTwoToothbreshesThenTotalPriceIsTwoDollars() {
         Cart cart = new Cart();
 
         cart.add("Toothbrush", 1);
@@ -38,24 +39,38 @@ public class CartTest {
     }
 
     @Test
-    void emptyCartReceiptShowsZeroPrice(){
+    void emptyCartReceiptShowsZeroPrice() {
         Cart cart = new Cart();
 
         assertThat(cart.receipt())
                 .isEqualTo("""
-                                Total price $0
-                                """);
+                        Total price $0
+                        """);
     }
 
     @Test
-    void totalPriceCart(){
+    void totalPriceCart() {
         Cart cart = new Cart();
 
         cart.add("Toothbrush", 1);
 
         assertThat(cart.receipt())
                 .isEqualTo("""
+                        Toothbrush $1
+                        
                         Total price $1
+                        """);
+    }@Test
+    void cartWithDifferentItemsThenReceiptShowsNameAndPrice() {
+        Cart cart = new Cart();
+
+        cart.add("Toothpaste", 2);
+
+        assertThat(cart.receipt())
+                .isEqualTo("""
+                        Toothpaste $2
+                        
+                        Total price $2
                         """);
     }
 }
