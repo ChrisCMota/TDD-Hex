@@ -14,8 +14,7 @@ public class Cart {
 
     public String receipt() {
         return """
-                  Cart is empty
-                  Total price $0
-                  """;
+                  Total price $%s
+                  """.formatted(totalPrice());
     }
 }
